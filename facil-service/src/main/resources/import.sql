@@ -1,0 +1,4 @@
+insert into faciles(id_faciles, enunciado, codigo, respuesta) values (1, "¿Qué imprime el siguiente código?", "x = 5\ny = 3\nprint(x + y)", "8");
+insert into faciles(id_faciles, enunciado, codigo, respuesta) values (2, "¿Qué valor se imprimirá?", "a = 10\nb = 2\na = a // b\nprint(a)", "5");
+insert into faciles(id_faciles, enunciado, codigo, respuesta) values (3, "¿Cuál es el resultado de la siguiente operación?", "x = 7\ny = 2\nz = x % y\nprint(z)", "1");
+insert into faciles(id_faciles, enunciado, codigo, respuesta) values (4, "¿Qué se mostrará por pantalla?", "n = 20\nm = 4\nprint(n / m)", "5.0");
