@@ -9,17 +9,21 @@ export default function ResultadosComponent() {
         localStorage.getItem("puntaje") ? localStorage.getItem("puntaje") : 0
     );
 
-    const [segundos, setSegundos] = useState(
-        localStorage.getItem("segundos") ? localStorage.getItem("segundos") : 0
+    const [tiempo, setTiempo] = useState(
+        localStorage.getItem('tiempoCronometro') || '00:00:00'
     );
 
-    const [minutos, setMinutos] = useState(
-        localStorage.getItem("minutos") ? localStorage.getItem("minutos") : 0
-    );
+    useEffect(() => {
+        setTiempo(localStorage.getItem('tiempoCronometro') || '00:00:00');
+    }, []);
 
-    const [horas, setHoras] = useState(
-        localStorage.getItem("horas") ? localStorage.getItem("horas") : 0
-    );
+    const formatearTiempo = (segundos) => {
+        const horas = String(Math.floor(segundos / 3600)).padStart(2, '0');
+        const minutos = String(Math.floor((segundos % 3600) / 60)).padStart(2, '0');
+        const segundosFormateados = String(segundos % 60).padStart(2, '0');
+        return `${horas}:${minutos}:${segundosFormateados}`;
+    };
+
     return (
         <>
             <GlobalStyle />
@@ -28,13 +32,13 @@ export default function ResultadosComponent() {
                 <div className="resultados">
                     <h1>
                         <b>
-                            <u>Tu nota es: {puntaje}</u>
+                            <u>Tu calificación es: {puntaje}/ 7</u>
                         </b>
                     </h1>
-                    <h1>Tardaste un total de: </h1>
+                    <h1>Tu tiempo fue de:</h1>
                     <h1>
                         <b>
-                            {horas} horas, {minutos} minutos y {segundos} segundos.
+                            {formatearTiempo(parseInt(tiempo))}
                         </b>
                     </h1>
                 </div>

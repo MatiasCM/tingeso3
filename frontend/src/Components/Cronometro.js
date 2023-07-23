@@ -2,56 +2,39 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 function Cronometro() {
-  const [segundos, setSegundos] = useState(0);
-  const [minutos, setMinutos] = useState(0);
-  const [horas, setHoras] = useState(0);
+  const tiempoInicial = parseInt(localStorage.getItem("tiempoCronometro")) || 0;
+  const [tiempo, setTiempo] = useState(tiempoInicial);
 
+  // Función para formatear el tiempo en formato HH:mm:ss
+  const formatearTiempo = (tiempo) => {
+    const horas = String(Math.floor(tiempo / 3600)).padStart(2, "0");
+    const minutos = String(Math.floor((tiempo % 3600) / 60)).padStart(2, "0");
+    const segundos = String(tiempo % 60).padStart(2, "0");
+    return `${horas}:${minutos}:${segundos}`;
+  };
+
+  // Función para reiniciar el cronómetro
+  const resetCronometro = () => {
+    setTiempo(0);
+    localStorage.setItem("tiempoCronometro", "00:00:00");
+  };
+
+  // Actualizar el tiempo cada segundo
   useEffect(() => {
-    const cronometroID = setInterval(() => {
-      setSegundos(segundos => segundos + 1);
+    const interval = setInterval(() => {
+      setTiempo((prevTiempo) => {
+        const nuevoTiempo = prevTiempo + 1;
+        localStorage.setItem("tiempoCronometro", String(nuevoTiempo));
+        return nuevoTiempo;
+      });
     }, 1000);
-
-    return () => {
-      clearInterval(cronometroID);
-    };
+    return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    if (segundos >= 60) {
-      setSegundos(0);
-      setMinutos(minutos => minutos + 1);
-    }
-  }, [segundos]);
-
-  useEffect(() => {
-    if (minutos >= 60) {
-      setMinutos(0);
-      setHoras(horas => horas + 1);
-    }
-  }, [minutos]);
-
-  useEffect(() => {
-    // Guardar tiempo en el localStorage
-    localStorage.setItem('tiempoCronometro', JSON.stringify({ horas, minutos, segundos }));
-  }, [horas, minutos, segundos]);
-  localStorage.setItem("segundos", segundos);
-  localStorage.setItem("minutos", minutos);
-  localStorage.setItem("horas", horas);
-
-  const reiniciarCronometro = () => {
-    setSegundos(0);
-    setMinutos(0);
-    setHoras(0);
-  };
-
-  const formatoTiempo = valor => {
-    return valor < 10 ? `0${valor}` : valor;
-  };
 
   return (
     <div>
-        <HomeStyle>
-      <div className='cronometro'>{`${formatoTiempo(horas)}:${formatoTiempo(minutos)}:${formatoTiempo(segundos)}`}</div>
+      <HomeStyle>
+        <div className="cronometro">{formatearTiempo(tiempo)}</div>
       </HomeStyle>
     </div>
   );

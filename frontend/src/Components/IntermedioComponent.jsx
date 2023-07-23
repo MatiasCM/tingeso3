@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Preguntas from "./PreguntasComponent";
 import styled from "styled-components";
 import Navbar from "./NavbarComponent";
+import IntermedioService from "../Services/IntermedioService";
 
 class IntermedioComponent extends Component {
     constructor(props) {
@@ -12,11 +13,27 @@ class IntermedioComponent extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8080/medias")
-            .then((response) => response.json())
-            .then((data) => this.setState({ datas: data }));
+        IntermedioService.obtenerIntermedias().then((response) => {
+            this.setState({ datas: response.data });
+        }
+        );
     }
+
+    getRandomQuestions = () => {
+        const { datas } = this.state;
+        // Clonamos el array para no afectar el estado original
+        const shuffledQuestions = [...datas];
+        // Obtenemos 4 preguntas aleatorias sin repetir
+        const randomQuestions = [];
+        while (randomQuestions.length < 4 && shuffledQuestions.length > 0) {
+            const randomIndex = Math.floor(Math.random() * shuffledQuestions.length);
+            const randomQuestion = shuffledQuestions.splice(randomIndex, 1)[0];
+            randomQuestions.push(randomQuestion);
+        }
+        return randomQuestions;
+    };
     render() {
+        const randomQuestions = this.getRandomQuestions();
         return (
             <HomeStyle>
                 <Navbar />
@@ -26,7 +43,7 @@ class IntermedioComponent extends Component {
                             <u>Prueba: Modo Intermedio </u>
                         </b>
                     </h1>
-                    {this.state.datas.map((datas) => (
+                    {randomQuestions.map((datas) => (
                         <Preguntas
                             id={datas.id}
                             enunciado={datas.enunciado}

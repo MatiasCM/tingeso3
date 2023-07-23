@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Preguntas from "./PreguntasComponent";
 import styled from "styled-components";
 import Navbar from "./NavbarComponent";
+import FacilService from "../Services/FacilService";
 
 class FacilComponent extends Component {
     constructor(props) {
@@ -12,9 +13,10 @@ class FacilComponent extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8080/faciles")
-            .then((response) => response.json())
-            .then((data) => this.setState({ datas: data }));
+        FacilService.obtenerFaciles().then((response) => {
+            this.setState({ datas: response.data });
+        }
+        );
     }
 
     getRandomQuestions = () => {

@@ -1,18 +1,23 @@
-const create_puntaje = (puntaje) => {
-  localStorage.setItem("puntaje", puntaje);
-};
+const add_to_puntaje = (puntaje) => {
+  let currentScore = localStorage.getItem("puntaje");
+  let remaining = localStorage.getItem("restantes");
 
-export default function add_to_puntaje(puntaje) {
-  if (!localStorage.getItem("puntaje")) {
-    create_puntaje(puntaje);
+  if (!currentScore) {
+    localStorage.setItem("puntaje", puntaje);
   } else {
-    let score = Number(localStorage.getItem("puntaje"));
-    score += puntaje;
+    let score = parseInt(currentScore) + puntaje;
     localStorage.setItem("puntaje", score);
-    localStorage.setItem("restantes", localStorage.getItem("restantes") - 1);
-    if (localStorage.getItem("restantes") == 0) {
-      localStorage.setItem("puntaje", score / 4, 0);
+
+    if (remaining > 0) {
+      localStorage.setItem("restantes", remaining - 1);
+    }
+
+    if (remaining == 1) {
+      localStorage.setItem("puntaje", Math.round(score / 4));
     }
   }
+
   return localStorage.getItem("puntaje");
-}
+};
+
+export default add_to_puntaje;

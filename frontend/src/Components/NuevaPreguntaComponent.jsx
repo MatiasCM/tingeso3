@@ -5,6 +5,9 @@ import CodeMirror from '@uiw/react-codemirror';
 import { vscodeDarkInit } from '@uiw/codemirror-theme-vscode';
 import { javascript } from '@codemirror/lang-javascript';
 import Form from "react-bootstrap/Form";
+import FacilService from "../Services/FacilService";
+import IntermedioService from "../Services/IntermedioService";
+import DificilService from "../Services/DificilService";
 
 export default function NuevaPreguntaComponent() {
     const [enunciado, setEnunciado] = useState("");
@@ -30,41 +33,55 @@ export default function NuevaPreguntaComponent() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Obtener la URL del backend según la dificultad seleccionada
-        let urlBackend = "";
+      
         if (dificultad === "facil") {
-            urlBackend = "http://localhost:8080/faciles";
-        } else if (dificultad === "intermedio") {
-            urlBackend = "http://localhost:8080/medias";
-        } else if (dificultad === "dificil") {
-            urlBackend = "http://localhost:8080/dificiles";
-        } else {
-            // Manejar caso de error si la dificultad no es válida
-            console.error("Dificultad inválida");
-            return;
-        }
-
-        fetch(urlBackend, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                enunciado: enunciado,
-                codigo: codigo,
-                respuesta: respuesta
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Pregunta guardada:", data);
-                window.location.href = "/";
+          FacilService.guardarFacil({
+            enunciado: enunciado,
+            codigo: codigo,
+            respuesta: respuesta
+          })
+            .then(response => {
+              console.log("Pregunta guardada:", response.data);
+              window.location.href = "/";
             })
             .catch(error => {
-                console.error("Error al guardar la pregunta:", error);
-                // Manejo de errores si la pregunta no se pudo guardar en la base de datos.
+              console.error("Error al guardar la pregunta:", error);
+              // Manejo de errores si la pregunta no se pudo guardar en la base de datos.
             });
-    };
+        } else if (dificultad === "intermedio") {
+          IntermedioService.guardarIntermedia({
+            enunciado: enunciado,
+            codigo: codigo,
+            respuesta: respuesta
+          })
+            .then(response => {
+              console.log("Pregunta guardada:", response.data);
+              window.location.href = "/";
+            })
+            .catch(error => {
+              console.error("Error al guardar la pregunta:", error);
+              // Manejo de errores si la pregunta no se pudo guardar en la base de datos.
+            });
+        } else if (dificultad === "dificil") {
+          DificilService.guardarDificil({
+            enunciado: enunciado,
+            codigo: codigo,
+            respuesta: respuesta
+          })
+            .then(response => {
+              console.log("Pregunta guardada:", response.data);
+              window.location.href = "/";
+            })
+            .catch(error => {
+              console.error("Error al guardar la pregunta:", error);
+              // Manejo de errores si la pregunta no se pudo guardar en la base de datos.
+            });
+        } else {
+          // Manejar caso de error si la dificultad no es válida
+          console.error("Dificultad inválida");
+          return;
+        }
+      };
 
     return (
         <div>
@@ -105,7 +122,11 @@ export default function NuevaPreguntaComponent() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="dificultad">
                             <Form.Label>Dificultad:</Form.Label>
-                            <Form.Control type="text" value={dificultad} onChange={handleDificultadChange} required />
+                            <Form.Control as="select" value={dificultad} onChange={handleDificultadChange} required>
+                                <option value="facil">Fácil</option>
+                                <option value="intermedio">Intermedio</option>
+                                <option value="dificil">Difícil</option>
+                            </Form.Control>
                         </Form.Group>
                         <button type="submit" className="btn btn-primary">Guardar Pregunta</button>
                     </Form>
