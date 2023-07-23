@@ -3,10 +3,9 @@ package com.tingeso3.medioservice.controllers;
 import com.tingeso3.medioservice.entities.MedioEntity;
 import com.tingeso3.medioservice.services.MedioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -23,5 +22,11 @@ public class MedioController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(listaProblemas);
+    }
+
+    @PostMapping
+    public ResponseEntity<MedioEntity> agregarNuevaPregunta(@RequestBody MedioEntity nuevaPregunta) {
+        MedioEntity preguntaGuardada = medioService.guardarPregunta(nuevaPregunta);
+        return new ResponseEntity<>(preguntaGuardada, HttpStatus.CREATED);
     }
 }

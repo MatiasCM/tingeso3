@@ -3,10 +3,9 @@ package com.tingeso3.dificilservice.controllers;
 import com.tingeso3.dificilservice.entities.DificilEntity;
 import com.tingeso3.dificilservice.services.DificilService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -23,5 +22,11 @@ public class DificilController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(listaProblemas);
+    }
+
+    @PostMapping
+    public ResponseEntity<DificilEntity> agregarNuevaPregunta(@RequestBody DificilEntity nuevaPregunta) {
+        DificilEntity preguntaGuardada = dificilService.guardarPregunta(nuevaPregunta);
+        return new ResponseEntity<>(preguntaGuardada, HttpStatus.CREATED);
     }
 }

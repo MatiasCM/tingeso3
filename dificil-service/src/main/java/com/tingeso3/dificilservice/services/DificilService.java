@@ -15,4 +15,8 @@ public class DificilService {
     public ArrayList<DificilEntity> obtenerDificiles(){
         return (ArrayList<DificilEntity>) dificilRepository.findAll();
     }
+
+    public DificilEntity guardarPregunta(DificilEntity nuevaPregunta) {
+        return dificilRepository.save(nuevaPregunta);
+    }
 }

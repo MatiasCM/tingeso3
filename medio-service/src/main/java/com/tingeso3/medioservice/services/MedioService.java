@@ -15,4 +15,8 @@ public class MedioService {
     public ArrayList<MedioEntity> obtenerMedias(){
         return (ArrayList<MedioEntity>) medioRepository.findAll();
     }
+
+    public MedioEntity guardarPregunta(MedioEntity nuevaPregunta) {
+        return medioRepository.save(nuevaPregunta);
+    }
 }

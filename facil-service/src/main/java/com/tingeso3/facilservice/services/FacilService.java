@@ -15,4 +15,8 @@ public class FacilService {
     public ArrayList<FacilEntity> obtenerFaciles(){
         return (ArrayList<FacilEntity>) facilRepository.findAll();
     }
+
+    public FacilEntity guardarPregunta(FacilEntity nuevaPregunta) {
+        return facilRepository.save(nuevaPregunta);
+    }
 }
