@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import Cronometro from "../Utils/Cronometro";
+import NavbarHomeComponent from "./NavbarHomeComponent";
 
 export default function HomeComponent() {
 
@@ -31,13 +32,12 @@ export default function HomeComponent() {
         <div>
             <GlobalStyle />
             <HomeStyle>
+                <NavbarHomeComponent />
                 <h1 className="text-center">
                     <b>
                         {" "}
-                        <i>
-                            {" "}
-                            <u>¡Bienvenido a PyQuiz!</u>
-                        </i>
+                        <b>¡Pon a prueba tus conocimientos de Python!</b>
+
                     </b>
                 </h1>
                 <h3 className="text-center">
@@ -91,7 +91,7 @@ export default function HomeComponent() {
 
 const GlobalStyle = createGlobalStyle`
 body {
-    background-color: #160076;
+    background-color: #F6F4EB;
 }
 `
 const HomeStyle = styled.nav`
@@ -101,7 +101,7 @@ const HomeStyle = styled.nav`
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    color: #fff;
+    color: black;
 }
 
 .facil{

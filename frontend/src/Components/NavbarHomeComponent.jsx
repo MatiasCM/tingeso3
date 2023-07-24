@@ -3,11 +3,10 @@ import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 import MuiToolbar from '@mui/material/Toolbar';
 import MuiTypography from '@mui/material/Typography';
-import Cronometro from "../Utils/Cronometro";
 
 const Toolbar = styled(MuiToolbar)(({ theme }) => ({
     height: 90,
-    
+    alignContent: 'center',
 }));
 
 const AppBar = styled(MuiAppBar)(({ theme }) => ({
@@ -19,23 +18,17 @@ const AppBar = styled(MuiAppBar)(({ theme }) => ({
         fontWeight: 'bold',
     },
     backgroundColor: "#91C8E4",
-    color: "black",
+    color : "black",
 }));
-
-const Spacer = styled('div')({
-    flex: 1,
-});
 
 function NavbarHomeComponent() {
     return (
         <div>
             <AppBar position="fixed">
-                <Toolbar >
+                <Toolbar sx={{ justifyContent: 'center' }}>
                     <MuiTypography className="pyquiz-text">
                         {'PyQuiz'}
                     </MuiTypography>
-                    <Spacer />
-                    <Cronometro />
                 </Toolbar>
             </AppBar>
             <Toolbar />
@@ -44,23 +37,3 @@ function NavbarHomeComponent() {
 }
 
 export default NavbarHomeComponent;
-
-
-/* function NavbarComponent() {
-    return (
-        <>
-            <NavStyle>
-                <header class="header">
-                    <div class="logo">
-                        <h1>PyQuiz</h1>
-                    </div>
-                    <nav></nav>
-                    <div class="clock">
-                        <Cronometro/>
-                        <h1></h1>
-                    </div>
-                </header>
-            </NavStyle>
-        </>
-    );
-} */

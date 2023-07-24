@@ -95,7 +95,7 @@ export default function PreguntasComponent({ id, enunciado, codigo, respuesta })
 
 const GlobalStyle = createGlobalStyle`
 body { 
-    background-color: #0F889E;
+    background-color: #F6F4EB;
 }
 `;
 
@@ -105,6 +105,7 @@ const HomeStyle = styled.nav`
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: black;
 }
 .code-box {
     justify-content: center;
@@ -112,10 +113,12 @@ const HomeStyle = styled.nav`
     flex-direction: column;
     text-align: left;
     padding-bottom: 20px;
+    color: black;
 }
 .respuesta {
     justify-content: center;
     padding-bottom: 50px;
+    color: black;
 }
 
 button {

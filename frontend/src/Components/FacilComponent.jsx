@@ -65,7 +65,7 @@ const HomeStyle = styled.nav`
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #FDFEFE;
+    color: black;
 }
 .asd{
     padding-top: 10px;

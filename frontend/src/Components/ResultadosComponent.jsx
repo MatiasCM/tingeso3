@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
+import NavbarHomeComponent from "./NavbarHomeComponent";
 
 export default function ResultadosComponent() {
 
@@ -27,6 +28,7 @@ export default function ResultadosComponent() {
         <>
             <GlobalStyle />
             <HomeStyle>
+            <NavbarHomeComponent />
                 <br></br>
                 <div className="resultados">
                     <h1>
@@ -52,7 +54,7 @@ export default function ResultadosComponent() {
 
 const GlobalStyle = createGlobalStyle`
     body {
-        background-color: #0F889E;
+        background-color: #F6F4EB;
     }
 `;
 
@@ -63,7 +65,7 @@ const HomeStyle = styled.nav`
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    color: #fff;
+    color: black;
 }
 
 .resultados{
@@ -72,7 +74,7 @@ const HomeStyle = styled.nav`
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #FDFEFE;
+    color: black;
     background-color: #0F889E;
     border-radius: 25px;
     padding: 20px;
