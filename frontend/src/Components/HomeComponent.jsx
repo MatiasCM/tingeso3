@@ -2,24 +2,28 @@ import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import Cronometro from "./Cronometro";
 
 export default function HomeComponent() {
 
     const ComenzarFacil = () => {
         localStorage.setItem("puntaje", 0);
         localStorage.setItem("restantes", 4);
+        localStorage.setItem("tiempoCronometro", "00:00:00");
         window.location.href = "/faciles";
     };
 
     const ComenzarIntermedio = () => {
         localStorage.setItem("puntaje", 0);
         localStorage.setItem("restantes", 4);
+        localStorage.setItem("tiempoCronometro", "00:00:00");
         window.location.href = "/medias";
     };
 
     const ComenzarDificil = () => {
         localStorage.setItem("puntaje", 0);
         localStorage.setItem("restantes", 4);
+        localStorage.setItem("tiempoCronometro", "00:00:00");
         window.location.href = "/dificiles";
     };
 
