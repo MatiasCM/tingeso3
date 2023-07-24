@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import Cronometro from "./Cronometro";
+import Cronometro from "../Utils/Cronometro";
 
 export default function HomeComponent() {
 

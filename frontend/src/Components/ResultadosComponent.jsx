@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
-import Cronometro from './Cronometro';
 
 export default function ResultadosComponent() {
 

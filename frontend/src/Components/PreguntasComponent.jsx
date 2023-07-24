@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import Form from "react-bootstrap/Form";
-import add_to_puntaje from "./Puntaje";
+import add_to_puntaje from "../Utils/Puntaje";
 import CodeMirror from '@uiw/react-codemirror';
 import { vscodeDark, vscodeDarkInit } from '@uiw/codemirror-theme-vscode';
 import { javascript } from '@codemirror/lang-javascript';
