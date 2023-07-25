@@ -4,10 +4,11 @@ import MuiAppBar from '@mui/material/AppBar';
 import MuiToolbar from '@mui/material/Toolbar';
 import MuiTypography from '@mui/material/Typography';
 import Cronometro from "../Utils/Cronometro";
+import py from '../Public/py.png';
 
 const Toolbar = styled(MuiToolbar)(({ theme }) => ({
     height: 90,
-    
+
 }));
 
 const AppBar = styled(MuiAppBar)(({ theme }) => ({
@@ -31,8 +32,9 @@ function NavbarHomeComponent() {
         <div>
             <AppBar position="fixed">
                 <Toolbar >
+                    <img src={py} alt="PyQuiz Logo" style={{ marginRight: 10, height: 60 }} />
                     <MuiTypography className="pyquiz-text">
-                        {'PyQuiz'}
+                        <b>{'PyQuiz'}</b>
                     </MuiTypography>
                     <Spacer />
                     <Cronometro />

@@ -40,7 +40,7 @@ class FacilComponent extends Component {
                 <div className="text-center">
                     <h1 className="asd">
                         <b>
-                            <u>Prueba: Modo Fácil </u>
+                            <b>Modo Fácil </b>
                         </b>
                     </h1>
                     {randomQuestions.map((datas) => (
@@ -66,6 +66,7 @@ const HomeStyle = styled.nav`
     flex-direction: column;
     align-items: center;
     color: black;
+    baclground-color: white;
 }
 .asd{
     padding-top: 10px;
